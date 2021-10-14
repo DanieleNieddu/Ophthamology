@@ -1,6 +1,6 @@
-A = imread("Im024.bmp");
+function img = superpixelClassification(A)
 B = rgb2lab(A);
-[L,N] = superpixels(B,200,"Method","slic");
+[L,N] = superpixels(B,1500,"Method","slic");
 BW = boundarymask(L);
 imshow(imoverlay(A,BW,'cyan'),'InitialMagnification',67);
 outputImage = zeros(size(A),'like',A);
@@ -15,5 +15,4 @@ for labelVal = 1:N
   outputImage(greenIdx) = mean(A(greenIdx));
   outputImage(blueIdx) = mean(A(blueIdx));
 end    
-figure
-imshow(outputImage,'InitialMagnification',67);
+img = outputImage;
