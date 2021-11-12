@@ -8,7 +8,7 @@ mask(25:end-25,25:end-25) = 1;
 
 imshow(mask);
 
-BW = activecontour(B,mask,6000);
+BW = activecontour(B,mask,b);
 imshow(BW);
 
 
