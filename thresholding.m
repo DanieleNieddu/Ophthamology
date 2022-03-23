@@ -41,5 +41,6 @@ if (newT < T)
 else
     img = G;
 end
+imshow(img);
 
 

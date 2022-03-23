@@ -25,7 +25,7 @@ function J=regiongrowing(I,x,y,reg_maxdist)
 %
 % Author: D. Kroon, University of Twente
 if(exist('reg_maxdist','var')==0), reg_maxdist=0.2; end
-if(exist('y','var')==0), figure, imshow(I,[]); [x,y] = getpts; y=round(y(1)); x=round(x(1)); end
+if(exist('y','var')==0), figure, imshow(I,[]); [y,x]=getpts; y=round(y(1)); x=round(x(1)); end
 J = zeros(size(I)); % Output 
 Isizes = size(I); % Dimensions of input image
 reg_mean = I(x,y); % The mean of the segmented region
@@ -70,5 +70,3 @@ while(pixdist<reg_maxdist&&reg_size<numel(I))
     % Remove the pixel from the neighbour (check) list
     neg_list(index,:)=neg_list(neg_pos,:); neg_pos=neg_pos-1;
 end
-% Return the segmented area as logical matrix
-J=J>1;

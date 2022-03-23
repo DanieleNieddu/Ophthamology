@@ -1,4 +1,4 @@
-function img = superpixelClassification(A)
+A = imread("RIM-ONE\Normal\Im004.bmp");
 B = rgb2lab(A);
 [L,N] = superpixels(B,1500,"Method","slic");
 BW = boundarymask(L);
@@ -16,3 +16,4 @@ for labelVal = 1:N
   outputImage(blueIdx) = mean(A(blueIdx));
 end    
 img = outputImage;
+imshow(img);
