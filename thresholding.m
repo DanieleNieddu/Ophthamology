@@ -1,5 +1,5 @@
 %function img = thresholding(A)
-A  = imread("RIM-ONE\Normal\Im001.bmp");
+A  = imread("RIM-ONE\Normal\Im004.bmp");
 G = 0;
 C = rgb2gray(A);
 [x,y] = size(C);
