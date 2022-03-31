@@ -1,7 +1,7 @@
 function img = superpixelClassification(A)
-
+k = 10;
 B = rgb2lab(A);
-[L,N] = superpixels(B,10,"Method","slic");
+[L,N] = superpixels(B,k,"Method","slic");
 BW = boundarymask(L);
 imshow(imoverlay(A,BW,'cyan'),'InitialMagnification',67);
 outputImage = zeros(size(A),'like',A);

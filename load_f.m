@@ -1,6 +1,6 @@
 %script per gestire i vari metodi di segmentazione
 
-A = imread("DrishtiGS\drishti-dataset\Normali\drishtiGS_009.png");
+A = imread("DrishtiGS\drishti-dataset\Normali\drishtiGS_007.png");
 
 prompt = "Scegliere il metodo di segmentazione dell'immagine \n" + ...
     "1) Superpixel \n" + ...
@@ -11,21 +11,26 @@ prompt = "Scegliere il metodo di segmentazione dell'immagine \n" + ...
     "6) Fuzzy C means clustering \n" + ...
     "... : "
 x = input(prompt);
-
-switch x
-    case 1
-        B = superpixelClassification(A);
-    case 2
-        B = contour_Based_App(A);
-    case 3
-        B = tresholding(A);
-    case 4
-        B = regiongrowing(A);
-    case 5
-        B = kMeansClustering(A);
-    case 6 
-        B = fuzzyCMeansClustering(A);
+    switch x
+        case 1
+            B = superpixelClassification(A);
+            imshow(B);
+        case 2
+            B = contour_Based_App(A);
+            imshow(B);
+        case 3
+            B = tresholding(A);
+            imshow(B);
+        case 4
+            B = regiongrowing(A);
+            imshow(B);
+        case 5
+            B = kMeansClustering(A);
+            imshow(B);
+        case 6 
+            B = fuzzyCMeansClustering(A);
+            imshow(B);
 end
 
-imshow(B);
+
 
