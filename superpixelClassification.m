@@ -1,6 +1,7 @@
-A = imread("RIM-ONE\Normal\Im004.bmp");
+function img = superpixelClassification(A)
+
 B = rgb2lab(A);
-[L,N] = superpixels(B,1500,"Method","slic");
+[L,N] = superpixels(B,10,"Method","slic");
 BW = boundarymask(L);
 imshow(imoverlay(A,BW,'cyan'),'InitialMagnification',67);
 outputImage = zeros(size(A),'like',A);
@@ -16,4 +17,5 @@ for labelVal = 1:N
   outputImage(blueIdx) = mean(A(blueIdx));
 end    
 img = outputImage;
+img = im2gray(im2single(img));
 imshow(img);

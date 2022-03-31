@@ -1,4 +1,4 @@
-A = imread("RIM-ONE\Normal\Im004.bmp");
+function bw = fuzzyCMeansClustering(A)
 
 fA = mat2gray(A);
 level = graythresh(fA);
@@ -11,4 +11,3 @@ member = member(:,cidx);
 [maxmember,label] = max(member,[],2);
 level = (max(data(label == 1)) + min(data(label == 2)))/2;
 bw = im2bw(fA,level);
-imshow(bw);
