@@ -1,16 +1,21 @@
-function BW = contour_Based_App(A1)
+function BW = contour_Based_App(A1,k)
 
-k = 500;
+% A1 immagine da segmentare
+% k numero di iterazioni del metodo
+
+%A1 = imread("DrishtiGS\drishti-dataset\Normali\drishtiGS_017.png");
+%k = 500;
 
 C = rgb2gray(A1);
 
 mask = zeros(size(C));
+[x y] = size(C);
 
-mask(25:end-25,25:end-25) = 1;
-
-imshow(mask);
+mask(800:end-800,800:end-800) = 1;
 
 BW = activecontour(C,mask,k);
+
+
 
 
 

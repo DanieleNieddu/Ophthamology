@@ -1,10 +1,11 @@
-function  B = kMeansClustering(A)
+function  B = kMeansClustering(A,k)
 
-k = 3
+% A immagine
+% k numero di iterazioni
 
-[L,C] = imsegkmeans(A,3);
-B = label2rgb(L,im2double(C));
-B = im2gray(im2single(B));
+[L,Centers] = imsegkmeans(A,k);
+B = labeloverlay(A,L);
+imshow(B);
 
 
 

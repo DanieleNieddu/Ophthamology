@@ -1,9 +1,12 @@
-function img = superpixelClassification(A)
-k = 10;
+function img = superpixelClassification(A,k)
+
+%A immagine rgb da segmentare
+%k numero di labels
+
 B = rgb2lab(A);
 [L,N] = superpixels(B,k,"Method","slic");
 BW = boundarymask(L);
-imshow(imoverlay(A,BW,'cyan'),'InitialMagnification',67);
+%imshow(imoverlay(A,BW,'cyan'),'InitialMagnification',67);
 outputImage = zeros(size(A),'like',A);
 idx = label2idx(L);
 numRows = size(A,1);
@@ -17,5 +20,5 @@ for labelVal = 1:N
   outputImage(blueIdx) = mean(A(blueIdx));
 end    
 img = outputImage;
-img = im2gray(im2single(img));
-imshow(img);
+%img = im2gray(im2single(img));
+%imshow(img);
