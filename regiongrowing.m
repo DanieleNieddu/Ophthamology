@@ -1,4 +1,4 @@
-function J=regiongrowing(A,x,y,reg_maxdist)
+function J=regiongrowing(I,x,y,reg_maxdist)
 % This function performs "region growing" in an image from a specified
 % seedpoint (x,y)
 %
@@ -25,12 +25,10 @@ function J=regiongrowing(A,x,y,reg_maxdist)
 %
 % Author: D. Kroon, University of Twente
 
-I = im2double(A);
-x=160; y=270;
-reg_maxdist = 0.2;
-
-%if(exist('reg_maxdist','var')==0), reg_maxdist=0.2; end
-%if(exist('y','var')==0), figure, imshow(I,[]); [y,x]=getpts; y=round(y(1)); x=round(x(1)); end
+if(x == 0 || y == 0)
+    imshow(I,[0 255]);
+    [x,y] = ginput(1);
+end
 
 J = zeros(size(I)); % Output 
 Isizes = size(I); % Dimensions of input image
@@ -50,9 +48,8 @@ neigb=[-1 0; 1 0; 0 -1;0 1];
 % Start regiogrowing until distance between regio and posible new pixels become
 % higher than a certain treshold
 while(pixdist<reg_maxdist&&reg_size<numel(I))
-
     % Add new neighbors pixels
-    for j=1:4,
+    for j=1:4
         % Calculate the neighbour coordinate
         xn = x +neigb(j,1); yn = y +neigb(j,2);
         
