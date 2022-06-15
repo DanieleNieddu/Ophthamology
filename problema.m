@@ -1,3 +1,9 @@
+%In questo scrit provo ad eseguire la funzione regiongrowing su
+%immagini differenti di due dataset differenti (RIM-ONE e Dhristi).
+%Quando chiamo la funzione regiongrowing su un'immagine Dhristi questa
+%entra in un loop infinito, succede lo stesso sul crop dell'immagine
+%stessa, sia passando diversi parametri x e y.
+
 Imm1 = im2double(imread('RIM-ONE\Normal\Im019.bmp'));
 Imm2 = im2double(imread('RIM-ONE\Normal\Im020.bmp'));
 Imm3 = im2double(imread("DrishtiGS\drishti-dataset\Normali\drishtiGS_041.png"));

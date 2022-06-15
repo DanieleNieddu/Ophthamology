@@ -2,7 +2,8 @@
 clc;
 clear;
 close all;
-A = imread("DrishtiGS\drishti-dataset\Normali\drishtiGS_047.png");
+A = imread("RIM-ONE\Normal\Im008.bmp");
+%A = imresize(A,0.75);
 dataSet = cell(8,1);
 prompt = "Scegliere il metodo di segmentazione dell'immagine \n" + ...
     "1) Superpixel \n" + ...
@@ -55,8 +56,8 @@ x = input(prompt);
             dataSet{8} = kMeansClustering (A,25);
             montage(dataSet);
         case 6
-            Ac = drishtiCrop(A);
-            B = fuzzyCMeansClustering(Ac);
+            %Ac = drishtiCrop(A);
+            B = fuzzyCMeansClustering(A);
             imshow(B);
     end
 
