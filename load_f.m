@@ -2,7 +2,7 @@
 clc;
 clear;
 close all;
-A = imread("RIM-ONE\Normal\Im008.bmp");
+A = imread("new_crop\DrishtiGS\drishti-dataset\Normali\Imm07.bmp");
 %A = imresize(A,0.75);
 dataSet = cell(8,1);
 prompt = "Scegliere il metodo di segmentazione dell'immagine \n" + ...
