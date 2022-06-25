@@ -8,5 +8,5 @@ function IM = tresholding(G)
 
 level = graythresh(G);
 IM = imbinarize(G,level);
-imshow(IM);
+
 
