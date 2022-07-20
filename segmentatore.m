@@ -32,7 +32,7 @@ for n = 1:length(cartella)
       B = im2double(im2gray(I));
       A4 = regiongrowing(B,20,20,0.2);
       imwrite(A4,RG);
-      A5 = kMeansClustering(I,2);
+      A5 = kMeansClustering(I,3);
       imwrite(A5,KMC);
       A6 = fuzzyCMeansClustering(I);
       imwrite(A6,FCMC);

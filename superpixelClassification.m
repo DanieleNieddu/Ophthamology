@@ -1,7 +1,10 @@
-function img = superpixelClassification(A,k)
+%function img = superpixelClassification(A,k)
 
 %A immagine rgb da segmentare
 %k numero di labels
+
+k = 30;
+A = imread("RIM-ONE_DL_images\partitioned_by_hospital\training_set\normal\r2_Im034.png");
 
 B = rgb2lab(A);
 [L,N] = superpixels(B,k,"Method","slic");
@@ -21,4 +24,4 @@ for labelVal = 1:N
 end    
 img = outputImage;
 %img = im2gray(im2single(img));
-%imshow(img);
+imshow(img);
