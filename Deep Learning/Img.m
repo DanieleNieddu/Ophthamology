@@ -1,12 +1,3 @@
-
-%Segmentazione basata sul Deep Learning su immagini di fondi retinici 
-%con il fine di aggevolare la rilevazione di glaucoma
-%
-%Basato sul codice scritto dal Dr. Barath Narayanan, 
-% University of Dayton Research Institute (UDRI) 
-% con co-autori: Dr. Russell C. Hardie e Redha Ali.
-% https://blogs.mathworks.com/deep-learning/2021/05/10/semantic-segmentation-for-medical-imaging/?s_tid=feedtopost
-
 % Clear workspace 
 clear; close all; clc;
 
@@ -70,7 +61,7 @@ pximdsTrain=partitionByIndex(pximdsResz,train_idx);
 pximdsValid=partitionByIndex(pximdsResz,valid_idx);
 
 % Test Dataset
-pximdsTest=partitionByIndex(pximdsResz,test_idx);
+pximdsTest = pximdsResz;
 
 % Number of classes
 numClasses=length(classNames);
@@ -104,7 +95,6 @@ net = trainNetwork(pximdsTrain,lgraph,options);
 % Evaluation
 metrics=evaluateSemanticSegmentation(pxdspredicted,pximdsTest);
 
-% Normalized Confusion Matrix
 normConfMatData=metrics.NormalizedConfusionMatrix.Variables;
 figure
 h=heatmap(classNames,classNames,100*normConfMatData);
@@ -112,13 +102,6 @@ h.XLabel='Predicted Class';
 h.YLabel='True Class';
 h.Title='Normalized Confusion Matrix (%)';
 
-% Number of Images
-num_test_images=length(pximdsTest.Images);
-
-% Pick any random 2 images
-perm=randperm(num_test_images,2);
-
-% Visualize the images with Mask
 for idx=1:length(perm)
     
     % Extract filename for the title
@@ -128,9 +111,6 @@ for idx=1:length(perm)
     I=imread(pximdsTest.Images{perm(idx)});
     I=imresize(I,[imageSize(1) imageSize(2)],'bilinear');
     
-    figure;
-    image(I);
-    hold on;
     
     % Read the actual mask and resize it for visualization
     actual_mask=imread(pximdsTest.PixelLabelData{perm(idx)});
@@ -147,9 +127,6 @@ for idx=1:length(perm)
     visboundaries(predicted_results,'Color','g');
     title(sprintf('%s Red- Actual, Green - Predicted',filename),'Interpreter',"none");
     
-    imwrite(mat2gray(predicted_results),sprintf('%s.png',filename));
-    
+    imwrite(mat2gray(predicted_results),sprintf('DL_GT/%s.png',filename));
+
 end
-
-%}
-
