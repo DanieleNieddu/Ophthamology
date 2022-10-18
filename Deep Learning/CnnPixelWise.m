@@ -6,7 +6,7 @@ size = [255 255];
 DLdisc = "DL_GT\";
 DLcup = "OL_GT\";
 GTdisc = "GT_Disc\";
-GTcup = "GT_Cup";
+GTcup = "GT_Cup\";
 
 discSet = dir("GT_Disc\");
 cupSet = dir("GT_Cup\");
@@ -16,6 +16,7 @@ cupAcc = zeros(1,485);
 discAcc = zeros(1,485);
 
 for i = 3:length(discSet)
+    %{
     pat1 = strcat(GTdisc, discSet(i).name);
     pat2 = strcat(DLdisc,DLDiscSet(i).name);
 
@@ -23,8 +24,7 @@ for i = 3:length(discSet)
     img2 = imread(pat2);
 
     discAcc(1,i-2) = compareBW(img1,img2);
-
-    %{
+    %}
     pat1 = strcat(GTcup, cupSet(i).name);
     pat2 = strcat(DLcup, DLCupSet(i).name);
     
@@ -32,7 +32,6 @@ for i = 3:length(discSet)
     img2 = imread(pat2);
 
     cupAcc(1,i-2) = compareBW(img1,img2);
-    %}
 end
 
 

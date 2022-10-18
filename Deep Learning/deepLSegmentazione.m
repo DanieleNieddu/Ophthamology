@@ -14,11 +14,11 @@ clear; close all; clc;
 imds=imageDatastore("RIM-ONE_DL_images",'IncludeSubfolders',true);
 
 % Define class names and their corresponding IDs
-classNames=["Optic_Disc","Background"];
+classNames=["Optic_Cup","Background"];
 labelIDs=[255,0];
 
 % Create a pixelLabelDatastore holding the ground truth pixel labels
-pxds=pixelLabelDatastore("GT_Disc",classNames,labelIDs);
+pxds=pixelLabelDatastore("GT_Cup",classNames,labelIDs);
 
 % Create a pixel label image datastore of all images  
 pximds=pixelLabelImageDatastore(imds,pxds);
@@ -96,10 +96,10 @@ options=trainingOptions('sgdm',...
     'GradientThresholdMethod','l2norm',...
     'GradientThreshold',0.05);
 % Train the network 
-net = trainNetwork(pximdsTrain,lgraph,options);
+net2 = trainNetwork(pximdsTrain,lgraph,options);
 
 % Semantic segmentation of test dataset based on the trained network
-[pxdspredicted]=semanticseg(pximdsTest,net,'WriteLocation',tempdir);
+[pxdspredicted]=semanticseg(pximdsTest,net2,'WriteLocation',tempdir);
 
 % Evaluation
 metrics=evaluateSemanticSegmentation(pxdspredicted,pximdsTest);
