@@ -1,14 +1,14 @@
-clear; close all; clc;
+%clear; close all; clc;
 
-load net2;
-cartella = "RIM-ONE_DL_images\";
+%load net2;
+cartella = "saveprova\D_img\";
 size = [255 255];
 imgSet = dir(cartella);
 l = length(imgSet);
 
 for i = 3:l
     percorso = strcat(cartella,imgSet(i).name);
-    nuovoPercorso = strcat("OL_GT\",imgSet(i).name);
+    nuovoPercorso = strcat("DR_p\",imgSet(i).name);
     img = imresize(imread(percorso),size);
 
     GT = semanticseg(img,net2);
